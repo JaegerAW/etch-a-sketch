@@ -19,8 +19,10 @@ function createGrid() {
     while (container.hasChildNodes()) {
         container.removeChild(container.firstChild);
       }
+      
     let value=input.value;
-    for (let i = 0; i < value; i++) {
+    if (value > 100) {alert("Please Input a number below 100")}
+    else {for (let i = 0; i < value; i++) {
        
         
         const createDivRow = document.createElement("div");
@@ -29,6 +31,7 @@ function createGrid() {
         container.appendChild(createDivRow);
     }
     
+}
 }
 
 
@@ -41,10 +44,21 @@ function createGridItems() {
         for (let i = 0; i < value; i++) {
         const createDivItem = document.createElement("div");
         createDivItem.classList.add("griditem")
+        //when i call createGridItems, i immediately give it a class .griditem
+        //when i call createGridItems, i immediately give it an eventlistener so every griditems gets it
+        /*give class hovertrail which gives the trail black color
+        createDivItem.addEventListener("mouseover", ()=>{createDivItem.classList.add("hovertrail")})
         divRow.appendChild(createDivItem);
         }
+    })*/
+    //give each div random rgb values when mouseover
+    createDivItem.addEventListener("mouseover", ()=>{createDivItem.style.backgroundColor = `rgb(${Math.floor(Math.random() * 255)}, 
+    ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`})
+    divRow.appendChild(createDivItem);
+    }
     })
 };
+
 
 
 /*function createGridItems() {  
@@ -68,8 +82,11 @@ function removeGrid() {
     const createDivRow = document.querySelector("div");
 container.removeChild(createDivRow);
 }
+
+
 submitBtn.addEventListener("click", createGrid);
 submitBtn.addEventListener("click", createGridItems);
+
 
 /*
 submitBtn.addEventListener("click", (()=>{
