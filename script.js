@@ -1,4 +1,8 @@
 const container = document.querySelector(".container");
+const drawingBox = document.createElement("div")
+drawingBox.classList.add("box");
+container.appendChild(drawingBox);
+
 const input = document.querySelector("input");
 const submitBtn = document.querySelector("button");
 
@@ -7,17 +11,44 @@ const submitBtn = document.querySelector("button");
 
 
 
+function createGrid(squares) {
+    while (drawingBox.hasChildNodes()) {
+        drawingBox.removeChild(drawingBox.firstChild);
+    }
+    //create the grid row and grid squares in 1 function
+    for (let i = 0; i < squares; i++) {
+        // create grid row
+        const divRow = document.createElement('div');
+        divRow.classList.add("gridrow");
+        for (let j = 0; j < squares; j++) {
+            //create grid items and immediately append to .gridrow/divRow
+            //this way, all divRow has squares number of griditem
+            const squares = document.createElement("div");
+            squares.classList.add("griditem")
+            
+            divRow.appendChild(squares);
+        }
+        drawingBox.appendChild(divRow);
+    }
+    const  rows = document.querySelectorAll(".griditem");
+    //since we use querySelectorAll, we need to use forEach
+    rows.forEach((row)=> {
+        row.addEventListener("mouseover", () =>{
+            row.style.backgroundColor = `rgb(${Math.floor(Math.random() * 255)}, 
+            ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`}
+        )
+    })
+    
+
+}
+createGrid(16);
 
 
-/*create a variable to target container*/
-/*create a variable to get number input from user*/
-/*create a variable to target submit button to generate the grid*/
 
-/*create a variable to store input value from user*/
-
+/*
 function createGrid() {
-    while (container.hasChildNodes()) {
-        container.removeChild(container.firstChild);
+    while (drawingBox.hasChildNodes()) {
+        drawingBox.removeChild(drawingBox.firstChild);
       }
       
     let value=input.value;
@@ -28,16 +59,16 @@ function createGrid() {
         const createDivRow = document.createElement("div");
         createDivRow.classList.add("gridrow")
          
-        container.appendChild(createDivRow);
+        drawingBox.appendChild(createDivRow);
     }
     
 }
 }
+*/
 
 
 
-
-function createGridItems() {
+/*function createGridItems() {
     const value = input.value;
         const divRows = document.querySelectorAll(".gridrow");
     divRows.forEach(divRow =>{    
@@ -52,13 +83,14 @@ function createGridItems() {
         }
     })*/
     //give each div random rgb values when mouseover
+  /*
     createDivItem.addEventListener("mouseover", ()=>{createDivItem.style.backgroundColor = `rgb(${Math.floor(Math.random() * 255)}, 
     ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`})
     divRow.appendChild(createDivItem);
     }
     })
 };
-
+*/
 
 
 /*function createGridItems() {  
@@ -78,14 +110,24 @@ function createGridItems() {
 */
 
 
-function removeGrid() {
-    const createDivRow = document.querySelector("div");
-container.removeChild(createDivRow);
+
+submitBtn.addEventListener("click", (()=> {
+    let value = input.value;
+    if (value > 100) {
+
+        createGrid(100)
+        alert(`${value} is too many! Here's 100!`)
+    }
+    else if ( value < 4) {
+        createGrid(4);
+        alert (`${value} is too little! Here's 4!`)
+    }
+    else {value = Math.floor(value);
+        createGrid(value)
+    }
 }
-
-
-submitBtn.addEventListener("click", createGrid);
-submitBtn.addEventListener("click", createGridItems);
+)
+)
 
 
 /*

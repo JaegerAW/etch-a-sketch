@@ -1,14 +1,20 @@
 .container {
     display: flex;
     flex-direction: column;
-    gap: 0;
-
-    width: 500px;
-    height:500px;
-    flex-grow: 1;
-    max-width: 1000px
+    border: 1px solid black;
+    width: 720px;
+    height:720px;
+    
 }
+.box {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
 
+}
 .gridrow {
     display: flex;
     flex-direction: row;
@@ -16,18 +22,21 @@
     min-width: 0;
     min-height: 0;
    flex-grow: 1;
-   padding: 5px;
+   padding: 0;
+ 
   
   
   
 }
 
+/*flex auto is what fills up the container and prevent the flex items from going overboard*/
+
 .griditem {
     background-color: white;
-    min-width: 10px;
-    min-height: 10px;
+    display: flex;
+    flex:auto;
     
-   
+    border: 0.5px solid black;
 }
 
 
@@ -38,9 +47,10 @@
 body {
     background-color: #828E91;
     color: white;
-}
-.hovertrail {
-    
-    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
 }
 
